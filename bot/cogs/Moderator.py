@@ -30,3 +30,5 @@ class Moderator(commands.Cog):
       else:
         await ctx.send("Sorry, you can't use that command!")
                        
+def setup(bot):
+  bot.add_cog(Moderator(bot))
