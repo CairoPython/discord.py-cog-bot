@@ -18,7 +18,7 @@ if __name__ == '__main__':
 async def on_ready():
   print(f'Logged on as {client.id} on Discord version {discord.__version__}')
   
-  await bot.change_presence(activity = discord.Game(name = 'Cogs.py example'))
+  
   
   
   
