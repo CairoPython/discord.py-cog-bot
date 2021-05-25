@@ -6,7 +6,8 @@ bot = commands.Bot(command_prefix = '!f') #my bot's prefix outside of the exampl
 cog_extensions = [
   cogs.Greetings,
   cogs.Moderator,
-  cogs.Random
+  cogs.Events,
+  cogs.Fun
 ]
 
 if __name__ == '__main__':
