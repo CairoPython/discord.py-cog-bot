@@ -31,6 +31,34 @@ class Moderator(commands.Cog):
         await ctx.send(f"Set the slowmode delay in this channel to {seconds} seconds!")
       else:
         await ctx.send("Sorry, you can't use that command!")
+        
+   @commands.command()
+   async def mute(self, ctx, member: discord.Member, *, reason: str = None):
+      if ctx.message.author.guild_permissions.administrator:
+        muted_role = next((g for g in ctx.guild.roles if g.name == "Muted"), None)
+        if not muted_role:
+          return await ctx.send("Are you sure you've made a role called **Muted**? Remember that it's case sensitive too...")
+        try:
+            await member.add_roles(muted_role, reason=default.responsible(ctx.author, reason))
+            await ctx.send(f"{member} is muted!)
+      else:
+        await ctx.send("Sorry, you can't use that command!")
+    
+    @commands.command()
+    async def unmute(self, ctx, member: discord.Member, *, reason: str = None):
+       
+        if ctx.message.author.guild_permissions.administrator:
+          muted_role = next((g for g in ctx.guild.roles if g.name == "Muted"), None)
+
+          if not muted_role:
+              return await ctx.send("Are you sure you've made a role called **Muted**? Remember that it's case sensitive too...")
+
+          try:
+            await member.remove_roles(muted_role, reason=default.responsible(ctx.author, reason))
+            await ctx.send(default.actionmessage("unmuted"))
+        else:
+          await ctx.send("Sorry, you can't use that command!") 
+        
    
   @commands.command
   async def unban(self, ctx, member: MemberID, *, reason):
