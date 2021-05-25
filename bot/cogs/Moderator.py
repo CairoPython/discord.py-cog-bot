@@ -19,6 +19,8 @@ class Moderator(commands.Cog):
     if ctx.message.author.guild_permissions.administrator:
       await ctx.guild.unban(discord.Object(id=member), reason=default.responsible(ctx.author, reason))
       await ctx.send(f'Banned {member} for {reason}')
+      dm = member.create_dm()
+      await dm.send(f"Hey, {member}. unfortunately, you were banned for {reason}. sucks to suck right? GET REKT")
     else:
       await ctx.send(f"Sorry, you can't use that command")
       
@@ -39,6 +41,8 @@ class Moderator(commands.Cog):
       dm = member.create_dm()
       await dm.send(f"Hi, {member}! {ctx.message_author} unbanned you for {reason}. Here's a link back to the server!")
       await dm.send(link)
+    else:
+      await ctx.send("Sorry, you can't use that command!")
       
 def setup(bot):
   bot.add_cog(Moderator(bot))
