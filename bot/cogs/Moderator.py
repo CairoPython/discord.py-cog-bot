@@ -15,20 +15,30 @@ class Moderator(commands.Cog):
       await ctx.send(f"Sorry, you can't use that command")
   
   @commands.command
-  async def ban(self, ctx, member: discord.Member, *, reason):
+  async def ban(self, ctx, member: MemberID, *, reason):
     if ctx.message.author.guild_permissions.administrator:
-      await ctx.ban(member, reason=reason)
+      await ctx.guild.unban(discord.Object(id=member), reason=default.responsible(ctx.author, reason))
       await ctx.send(f'Banned {member} for {reason}')
     else:
       await ctx.send(f"Sorry, you can't use that command")
       
    @commands.command
-   async def setdelay(ctx, seconds: int):
+   async def sm(ctx, seconds: int):
       if ctx.message.author.guild_permissions.administrator:
         await ctx.channel.edit(slowmode_delay=seconds)
         await ctx.send(f"Set the slowmode delay in this channel to {seconds} seconds!")
       else:
         await ctx.send("Sorry, you can't use that command!")
-                       
+   
+  @commands.command
+  async def unban(self, ctx, member: MemberID, *, reason):
+    if ctx.message.author.guild_permissions.administrator:
+      await ctx.guild.unban(discord.Object(id=member), reason=default.responsible(ctx.author, reason))  
+      await ctx.send(f'Unbanned {member}! sending them a message now.')
+      link = await ctx.channel.create_invite(max_age = 300)
+      dm = member.create_dm()
+      await dm.send(f"Hi, {member}! {ctx.message_author} unbanned you for {reason}. Here's a link back to the server!")
+      await dm.send(link)
+      
 def setup(bot):
   bot.add_cog(Moderator(bot))
