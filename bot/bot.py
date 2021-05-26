@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix = '!f') #my bot's prefix outside of the example
+bot = commands.Bot(command_prefix = '?l ')
 
 cog_extensions = [
   cogs.Greetings,
