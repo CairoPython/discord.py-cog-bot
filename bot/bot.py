@@ -8,7 +8,8 @@ cog_extensions = [
   'cogs.Moderator',
   'cogs.Events',
   'cogs.Fun',
-  'cogs.presenceloop'
+  'cogs.presenceloop',
+  'cogs.Tags'
 ]
 
 if __name__ == '__main__':
