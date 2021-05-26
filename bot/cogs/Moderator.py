@@ -82,11 +82,15 @@ class Moderator(commands.Cog):
         if limit < 99:
             await ctx.message.delete()
             deleted = await ctx.channel.purge(limit=limit)
-            succ = f'₍₍◝(°꒳°)◜₎₎ Successfully deleted {len(deleted)} message(s)'
+            succ = f'Successfully deleted {len(deleted)} message(s)'
             await ctx.channel.send(succ, delete_after=6)
 
         else:
             await ctx.send(f'Cannot delete `{limit}`, try with less than 100.', delete_after=23)
+                           
+                           
+
+                           
                            
       
 def setup(bot):
