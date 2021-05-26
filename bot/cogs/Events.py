@@ -7,7 +7,7 @@ blacklisted_wordlist = [
 'anus',
 'ballsack',
 'blowjob',
-'blow job,
+'blow job',
 'boner',
 'clitoris',
 'cock',
