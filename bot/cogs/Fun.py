@@ -28,7 +28,7 @@ class Fun(commands.Cog):
   
         
     @commands.command()
-    async def reverse(self, ctx, *, text: str):
+    async def reverse(self, ctx, *, text: str): 
       t_rev = text[::-1].replace("@", "@\u200B").replace("&", "&\u200B")
       await ctx.send(f"🔁 {t_rev}")
     
