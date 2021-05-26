@@ -2,6 +2,40 @@ import discord
 from discord.ext import commands
 from better_profanity import profanity
 
+blacklisted_wordlist = [
+'anal',
+'anus',
+'ballsack',
+'blowjob',
+'blow job,
+'boner',
+'clitoris',
+'cock',
+'cunt',
+'dick',
+'dildo'
+'dyke',
+'fag',
+'fuck',
+'jizz',
+'labia',
+'muff',
+'nigger',
+'nigga',
+'penis',
+'piss',
+'pussy',
+'scrotum',
+'sex',
+'shit',
+'slut',
+'smegma',
+'spunk',
+'twat',
+'vagina',
+'wank',
+'whore'
+]
 
 class Events(commands.Cog):
   
@@ -10,13 +44,23 @@ class Events(commands.Cog):
     
     
   #listeners
+  #muterole deleter
   @commands.Cog.listener
   async def on_message(self, message, ctx):
     if message.author.has_roles('Muted'):
-      await ctx.delete_message()
-      
+       message.delete(message)
+  
+  #profanity filter
   @commands.Cog.listener
   async def on_message(self, ctx, message):
+    if nsfw = True:
+      for word in blacklisted_wordlist:
+        if word in message.content:
+           message.delete(message)
+           dm = message.author.create_dm()
+           await dm.send("Hey! you can't use that word. you've been warned.")
+    else:
+      return
       
   #commands
   @commands.command
