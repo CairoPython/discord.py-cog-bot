@@ -49,3 +49,7 @@ class Fun(commands.Cog):
               await ctx.send(f"{slotmachine} 2 in a row, you won! 🎉")
           else:
               await ctx.send(f"{slotmachine} No match, you lost 😢")
+          
+          @commands.command(aliases=["Hello", "hello", "hi", "Hi"])
+          async def hey(self, ctx):
+            ctx.send("Hi!")
