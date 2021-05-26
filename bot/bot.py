@@ -4,10 +4,11 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix = '?l ')
 
 cog_extensions = [
-  cogs.Greetings,
-  cogs.Moderator,
-  cogs.Events,
-  cogs.Fun
+  'cogs.Greetings',
+  'cogs.Moderator',
+  'cogs.Events',
+  'cogs.Fun',
+  'cogs.presenceloop'
 ]
 
 if __name__ == '__main__':
