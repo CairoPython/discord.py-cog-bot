@@ -9,8 +9,9 @@ class Random(commands.Cog):
     
   #listeners
   @commands.Cog.listener
-  async def status_change(self):
-    await bot.change_presence(activity = discord.Game(name = 'Cogs.py example'), status = discord.Status.dnd)
+  async def on_message(self, ctx):
+    if message.author.has_roles('Muted'):
+      await ctx.delete_message()
   
   
     
