@@ -71,6 +71,23 @@ class Moderator(commands.Cog):
       await dm.send(link)
     else:
       await ctx.send("Sorry, you can't use that command!")
+                           
+                           
+    @commands.command(aliases=['del', 'p', 'prune'], bulk=True, no_pm=True)
+    async def purge(self, ctx, limit: int):
+      if ctx.message.author.guild_permissions.administrator:
+        if not limit:
+            return await ctx.send('Enter the number of messages you want me to delete.')
+
+        if limit < 99:
+            await ctx.message.delete()
+            deleted = await ctx.channel.purge(limit=limit)
+            succ = f'₍₍◝(°꒳°)◜₎₎ Successfully deleted {len(deleted)} message(s)'
+            await ctx.channel.send(succ, delete_after=6)
+
+        else:
+            await ctx.send(f'Cannot delete `{limit}`, try with less than 100.', delete_after=23)
+                           
       
 def setup(bot):
   bot.add_cog(Moderator(bot))
